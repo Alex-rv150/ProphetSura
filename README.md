@@ -30,13 +30,13 @@ El entregable consiste en un modelo implementado en Python (notebook `.ipynb`), 
 
 ### Requisitos previos
 
-Antes de ejecutar el notebook, asegúrate de tener instalado Python (>= 3.8) y de haber creado un entorno virtual (opcional pero recomendado):
+Tener instalado Jupyter Notebook clásico (o VSCode). Antes de ejecutar el notebook, asegú de tener instalado Python (>= 3.8) y de haber creado un entorno virtual (opcional pero recomendado):
 
 ```bash
 python -m venv env
 source env/bin/activate        # En Windows: env\Scripts\activate
 
-
+```
 ### 🛠️ Instalación y ejecución del modelo
 
 Instala las dependencias necesarias:
@@ -48,14 +48,14 @@ pip install -r requirements.txt
 ### Archivos incluidos
 
 - `main.ipynb`: Notebook principal que contiene el flujo completo de análisis, entrenamiento, validación y predicción.
-- `datos.csv`: Dataset con el historial de demanda de servicios por municipio y tipo de atención.
+- `Prophet 2021-2024.csv`: Dataset con el historial de demanda de servicios por municipio y tipo de atención (Comprimido).
 - `requirements.txt`: Lista de librerías necesarias.
 - `README.md`: Este documento.
 
 ### Ejecución del modelo
 
 1. Abre el archivo `main.ipynb` en Jupyter o Google Colab.
-2. Asegúrate de que el archivo `datos.csv` esté en la misma carpeta que el notebook.
+2. Asegúrate de que el archivo `Prophet 2021-2024.csv` esté en la misma carpeta que el notebook.
 3. Ejecuta cada celda en orden. El notebook incluye:
    - Limpieza y preparación de datos
    - Ingeniería de variables relevantes (estacionalidad, tendencias, etc.)
@@ -80,11 +80,11 @@ El modelo basado en **Facebook Prophet** genera predicciones de la demanda futur
 
 - Gráficas interactivas de predicción con sus intervalos de confianza.
 - Análisis de componentes del modelo para comprender qué factores impulsan la demanda.
-- Comparación entre predicciones y valores reales (cuando se evalúa sobre el pasado).
+
 
 ### Utilidad para la planificación
 
-Estas predicciones pueden ser utilizadas por ARL SURA para:
+Estas predicciones pueden ser utilizadas por SURA para:
 
 - Dimensionar el personal médico necesario por municipio.
 - Prever el stock de recursos sanitarios (ambulancias, insumos, etc.).
