@@ -1,10 +1,8 @@
 prophet[cmdstan]
+streamlit
 numpy
 pandas
-seaborn
 matplotlib
 plotly
 scikit-learn
-ipywidgets
-ipython
 holidays
