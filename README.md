@@ -30,7 +30,7 @@ El entregable consiste en un modelo implementado en Python, acompañado por los 
 
 ### Requisitos previos
 
-Tener instalado IDE de su preferencia. Antes de ejecutar el notebook, asegurese de tener instalado Python (>= 3.8) y de haber creado un entorno virtual:
+Tener instalado IDE de su preferencia. Antes de ejecutar el archivo ´app.py´, asegurese de tener instalado Python (>= 3.8), estar en la ubicación correcta y de haber creado un entorno virtual:
 
 ```bash
 python -m venv prophet_env
@@ -43,6 +43,10 @@ Instala las dependencias necesarias:
 
 ```bash
 pip install -r requirements.txt
+```
+Finalmente, ejecutar la aplicación:
+```bash
+streamlit run app.py
 ```
 
 ### Archivos incluidos
