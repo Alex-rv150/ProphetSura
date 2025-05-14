@@ -20,13 +20,42 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Configuración para reducir recargas
+# Configuración para reducir recargas y ajustar tamaños
 st.markdown("""
     <style>
         .stDeployButton {display:none;}
         footer {visibility: hidden;}
         #MainMenu {visibility: hidden;}
         .stButton button {width: 100%;}
+        .municipio-info {
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f0f2f6;
+            margin-top: 20px;
+        }
+        .map-container {
+            width: 100%;
+            height: 400px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        @media (max-width: 1200px) {
+            .map-container {
+                height: 350px;
+            }
+        }
+        @media (max-width: 768px) {
+            .map-container {
+                height: 300px;
+            }
+        }
     </style>
 """, unsafe_allow_html=True)
 
@@ -117,27 +146,33 @@ if st.session_state.show_map:
     # Añadir control de capas
     folium.LayerControl().add_to(m)
 
-    # Crear contenedor para la información del municipio
-    info_container = st.empty()
+    # Crear contenedor para el mapa con tamaño fijo
+    map_container = st.container()
+    with map_container:
+        map_data = st_folium(
+            m,
+            width="100%",
+            height=400,
+            key="map",
+            returned_objects=["last_active_drawing"]
+        )
 
-    # Mostrar el mapa y capturar la interacción
-    map_data = st_folium(
-        m,
-        width=1200,
-        height=600,
-        key="map",
-        returned_objects=["last_active_drawing"]
-    )
+    # Crear contenedor para la información del municipio
+    info_container = st.container()
 
     # Actualizar información del municipio seleccionado sin recargar
     if map_data and map_data.get('last_active_drawing'):
         municipio = map_data['last_active_drawing']['properties']['MPIO_CNMBR']
         poblacion = map_data['last_active_drawing']['properties']['STP27_PERS']
         
-        with info_container.container():
-            st.sidebar.markdown("### Información del Municipio")
-            st.sidebar.markdown(f"**Municipio:** {municipio}")
-            st.sidebar.markdown(f"**Población:** {poblacion:,.0f}")
+        with info_container:
+            st.write("---")
+            st.write("### Información del Municipio Seleccionado")
+            col1, col2 = st.columns(2)
+            with col1:
+                st.write(f"**Municipio:** {municipio}")
+            with col2:
+                st.write(f"**Población:** {poblacion:,.0f}")
 
 if st.sidebar.button("Predicción",use_container_width=True):
 
