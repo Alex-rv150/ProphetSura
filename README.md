@@ -46,7 +46,7 @@ pip install -r requirements.txt
 ```
 Finalmente, ejecutar la aplicación:
 ```bash
-streamlit run app.py
+python app_dash.py
 ```
 
 ### Archivos incluidos
